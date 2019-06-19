@@ -1,0 +1,51 @@
+<div class="modal-header">
+	<h2>{{ storeInfo.name }}</h2>
+	<h5>{{ storeInfo.address }}</h5>
+	<div class="modal-buttons">
+		<button class="btn btn-success" ng-click="newItemForm = true">Add New Item</button>
+	</div>
+</div>
+
+<div class="modal-body">
+	<form class="new-item" ng-show="newItemForm">
+		<h4>Add Item to Inventory</h4>
+		<label class="form-row">Name: <input type="text" ng-model="newItem.name" required /></label>
+		<label class="form-row">Price: <input type="text" ng-model="newItem.price" required /></label>
+		<label class="form-row">Description: <input type="text" ng-model="newItem.description" required /></label>
+		<label class="form-row">Quantity on Shelf: <input type="number" ng-model="newItem.total_in_shelf" required /></label>
+		<label class="form-row">Quantity in Vault: <input type="number" ng-model="newItem.total_in_vault" required /></label>
+
+		<div ng-show="failureAlert != ''">{{ failureAlert }}</div>
+
+		<div class="form-buttons">
+			<button class="btn btn-info" ng-click="addArticle(newItem)">Add It</button>
+			<button class="btn btn-warning" ng-click="closeNewArticleForm()">Never Mind</button>
+		</div>
+	</form>
+
+	<div ng-controller="ItemController" ng-repeat="article in storeArticles" class="stock-item">
+		<div class="item-details">
+			<h4>{{ article.name }} {{ article.price | currency }}</h4>
+			<p>Description: {{ article.description }}</p>
+			<button class="btn btn-danger" ng-click="deleteArticle(article)">Delete Item</button>
+		</div>
+
+		<div class="inventory">
+			<div class="inventory-row">
+				<h4>Total on Shelf: <span ng-show="!editShelf">{{ article.total_in_shelf }}</span></h4>
+				<input type="number" ng-model="article.total_in_shelf" ng-show="editShelf" ng-blur="updateArticle(article)" />
+				<button class="btn btn-info" ng-click="editShelf = true" ng-show="!editShelf">Update Shelf Stock</button>
+			</div>
+
+			<div class="inventory-row">
+				<h4>Total in Vault: <span ng-show="!editVault">{{ article.total_in_vault }}</span></h4>
+				<input type="number" ng-model="article.total_in_vault" ng-show="editVault" ng-blur="updateArticle(article)" />
+				<button class="btn btn-info" ng-click="editVault = true" ng-show="!editVault">Update Vault Stock</button>
+			</div>
+		</div>
+	</div>
+
+	<button style="margin: 20px 0;" class="btn btn-warning" ng-click="cancel()">Close</button>
+</div>
+
+<script src="src/scripts/app.js"></script>

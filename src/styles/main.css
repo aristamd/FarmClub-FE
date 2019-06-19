@@ -1,0 +1,81 @@
+html {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: lightgrey;
+}
+
+.header {
+	width: 100%;
+	max-width: 1280px;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 25px;
+}
+
+.new-store {
+	text-align: left;
+	padding: 15px;
+	margin: 10px;
+	border: 2px solid grey;
+	min-width: 320px;
+}
+
+.store-overview {
+	display: inline-block;
+	border: 2px solid black;
+	margin: 10px;
+	padding: 10px;
+	width: 300px;
+	min-height: 150px;
+	background-color: white;
+}
+
+.store-admin {
+	margin: 15px auto;
+}
+
+.stock-item {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	text-align: left;
+	border-bottom: 1px solid lightgrey;
+	padding: 10px;
+}
+
+.new-item {
+	display: flex;
+	flex-direction: column;
+	width: 350px;
+	border: 2px solid grey;
+	text-align: left;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.item-details {
+	width: 50%;
+}
+
+.inventory {
+	width: 50%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.inventory-row {
+	margin: 0 10px;
+}
+
+.form-row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.form-buttons {
+	margin: 0 auto;
+}

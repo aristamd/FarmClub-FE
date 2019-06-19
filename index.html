@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+	<title>Farm Club</title>
+
+    <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link data-require="bootstrap-css@3.*" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
+	<link href="src/styles/main.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body ng-app="farmClubApp">
+
+	<div ng-controller="mainCtrl">
+		<div class="header">
+			<h1>Super Zapatos, Inc.</h1>
+			<div class="new-store">
+				<h5 ng-click="newStoreForm = !newStoreForm" style="cursor: pointer">+ Add a New Location</h5>
+				<form ng-show="newStoreForm">
+					<label class="form-row">Store Name: <input type="text" ng-model="newStore.name" required /></label><br />
+					<label class="form-row">Store Address: <input type="text" ng-model="newStore.address" required /></label><br />
+					<div ng-show="failureAlert != ''">{{ failureAlert }}</div>
+					<input type="button" ng-click="addStore(newStore)" value="Add Store" />
+					<input type="button" ng-click="closeNewStoreForm()" value="Close" />
+				</form>
+			</div>
+		</div>
+
+		<h3>Locations</h3>
+		<div class="list">
+			<div ng-repeat="store in stores" class="store-overview">
+				<h4>{{ store.name }}</h4>
+				<p>{{ store.address }}</p>
+			    <div ng-controller="ModalCtrl">
+			    	<button class="btn btn-primary" ng-click="open(store.id)">View Stock</button>
+			    	<button class="btn btn-info" ng-click="storeAdmin = !storeAdmin">Options</button>
+			    	<div class="store-admin" ng-show="storeAdmin">
+						<div class="store-update">
+							<h5>Update Store Info</h5>
+							<label class="form-row">Name: <input type="text" ng-model="store.name" /></label>
+							<label class="form-row">Address: <input type="text" ng-model="store.address" /></label>
+						</div>
+						<button style="margin: 10px auto;" class="btn btn-info" ng-click="updateStoreInfo(store)">Update</button><br />
+						<button class="btn btn-danger" ng-click="deleteStore(store.id)">Delete Store</button>	    		
+			    	</div>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+    <script data-require="angular.js@1.6.5" data-semver="1.6.5" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script data-require="angular-animate@1.6.*" data-semver="1.6.5" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+    <script data-require="angular-touch@1.6.*" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-touch.js"></script>
+    <script data-require="ui-bootstrap@*" data-semver="2.5.0" src="https://cdn.rawgit.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script src="src/scripts/app.js"></script>
+
+  </body>
+
+</html>
